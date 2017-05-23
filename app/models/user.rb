@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
     self.current_cart_id = nil
   end
 
+  def current_cart=(cart)
+    # wtf
+    self.current_cart_id = cart.id
+  end
+
   def current_cart
     Cart.find_by(id: self.current_cart_id)
   end
