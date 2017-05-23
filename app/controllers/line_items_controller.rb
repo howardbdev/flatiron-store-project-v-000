@@ -9,7 +9,16 @@ class LineItemsController < ApplicationController
     else
       @cart = Cart.find_by(id: current_user.current_cart_id)
     end
-    @cart.line_items.create(item_id: params[:item_id])
+
+    line_item = @cart.line_items.find_by(item_id: params[:item_id] )
+
+    if line_item
+      line_item.quantity += 1
+      line_item.save
+    else
+      @cart.line_items.create(item_id: params[:item_id])
+    end
+
     redirect_to cart_path(@cart)
   end
 

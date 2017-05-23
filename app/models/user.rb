@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
   end
 
   def current_cart=(cart)
-    # wtf
-    self.current_cart_id = cart.id
+    if cart.nil?
+      reset_cart
+    else
+      self.current_cart_id = cart.id
+    end
   end
 
   def current_cart

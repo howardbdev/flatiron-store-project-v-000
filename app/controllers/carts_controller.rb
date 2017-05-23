@@ -7,6 +7,7 @@ class CartsController < ApplicationController
   def checkout
     @cart.process_cart_submission
     current_user.reset_cart
+    current_user.save
     redirect_to cart_path(@cart)
   end
 
