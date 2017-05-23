@@ -20,3 +20,9 @@ end
   password: "password"
   )
 end
+
+u = User.first
+c = u.carts.build
+li = c.line_items.build(item_id: 1)
+li2 = c.line_items.build(item_id: 2)
+c.save

@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :carts
+  has_many :orders, through: :carts
 
-  def current_cart=(cart)
-    @current_cart = cart
+  def reset_cart
+    self.current_cart_id = nil
   end
 
   def current_cart
-    @current_cart
+    Cart.find_by(id: self.current_cart_id)
   end
+
 end

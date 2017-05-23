@@ -5,4 +5,5 @@ class Item < ActiveRecord::Base
   def self.available_items
     self.all.collect { |item| item if item.inventory && item.inventory > 0 }.compact
   end
+
 end
